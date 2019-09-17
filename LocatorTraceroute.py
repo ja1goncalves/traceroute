@@ -40,9 +40,9 @@ def main(endpoint, jumps):
 
     while True:
         receiver = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
-        sender = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, udp)
-
         receiver.setsockopt(socket.SOL_SOCKET, socket.SO_RCVTIMEO, timeout)
+
+        sender = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, udp)
         sender.setsockopt(socket.SOL_IP, socket.IP_TTL, ttl)
 
         receiver.bind(("", port))
