@@ -29,7 +29,7 @@ def tracer(host, jumps=30):
     except socket.error as e:
         raise IOError(f'Unable to resolve {host}:{e}')
 
-    print(f"Traceroute to {host}:{port} with {jumps} jumps")
+    print(f"Traceroute to {destine} ({host}:{port}) with {jumps} jumps")
 
     while True:
         receiver = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)  # server received information for package
@@ -71,7 +71,7 @@ def tracer(host, jumps=30):
 
         if addr_present is not None:
             time_delay = round((end_time - start_time) * 1000, 2)  # calculation the time delay
-            print(f'ttl:{ttl:<8} host: {host_present}\tIP:({addr_present})\ttimedelay: {time_delay}ms')
+            print(f'ttl:{ttl:<8} host: {host_present}\t\t\tIP:({addr_present})\ttimedelay: {time_delay}ms')
         else:
             print('*' * 4)
 
