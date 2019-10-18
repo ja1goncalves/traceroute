@@ -47,6 +47,8 @@ def tracer(host, jumps=30):
         addr_present = None  # ip in address stoped packege
         host_present = None  # host of ip
 
+        sys.stdout.write(f'ttl:{ttl:<8} ')
+
         while not finished and tries > 0:  # while the attempts are not over
             try:
                 _, addr_present = receiver.recvfrom(512)  # Receive package in addr_present [index 1]
@@ -71,7 +73,11 @@ def tracer(host, jumps=30):
 
         if addr_present is not None:
             time_delay = round((end_time - start_time) * 1000, 2)  # calculation the time delay
-            print(f'ttl:{ttl:<8} host: {host_present}\t\t\tIP:({addr_present})\ttimedelay: {time_delay}ms')
+            sys.stdout.write(f'host: {host_present:<45} ')
+            sys.stdout.write(f'IP: {addr_present:<17} ')
+            sys.stdout.write(f'timedelay: {time_delay}ms ')
+            print()
+            # print(f'host: {host_present}\t\t\tIP:({addr_present})\ttimedelay: {time_delay}ms')
         else:
             print('*' * 4)
 
