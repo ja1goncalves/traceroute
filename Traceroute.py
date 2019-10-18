@@ -10,17 +10,17 @@ import signal
 
 
 def signal_handler(sig, frame):
-    print('Até mais! \U0001f600 \U0001F618 \U0001F44B')
+    print('\nSee you, bye! \U0001f600 \U0001F618 \U0001F44B')
     sys.exit(0)
 
 
 def main():
     print('-' * 60)
-    print("Iniciando o footprint do alvo | Pressione Ctrl+C para sair")
+    print("Init the footprint to target | Press Ctrl+C to exit")
     print('-' * 60)
 
-    endpoint = input("Digite o site do alvo: ")
-    jumps = int(input("Digite a quantidade saltos: "))
+    endpoint = input("Inset target site: ")
+    jumps = int(input("Insert jumps quantity: "))
 
     signal.signal(signal.SIGINT, signal_handler)
     tracer(endpoint, jumps)
@@ -92,11 +92,11 @@ def tracer(host, jumps=30):
 
             ttl += 1
             if addr_present == destine or ttl > jumps:  # packege has arrived in destine or jumps is finished
-                print("Análise feita com SUCESSO")
+                print("Successful analysis")
                 break
         except (socket.gaierror or socket.error) as e:
-            print("Algo de errado ocorreu com envio ou recebimento de informações \U0001F912 \U0001F915")
-            print(f"Mensagem de erro: {str(e)}")
+            print("Something went wrong with sending or receiving information \U0001F912 \U0001F915")
+            print(f"Error message: {str(e)}")
 
 
 if __name__ == '__main__':
